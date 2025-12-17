@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@layer base {
+  /* This sets Work Sans as default for all text */
+  body {
+    font-family: var(--font-work-sans);
+    scroll-behavior: smooth;
+  }
+  
+  /* Michroma for all headings and buttons */
+  h1, h2, h3, h4, h5, h6, button {
+    font-family: var(--font-michroma);
+  }
+}
+
+@layer utilities {
+  .font-michroma {
+    font-family: var(--font-michroma);
+  }
+  
+  .font-work-sans {
+    font-family: var(--font-work-sans);
+  }
+}

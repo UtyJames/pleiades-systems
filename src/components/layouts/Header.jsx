@@ -1,0 +1,202 @@
+'use client'
+
+import { useState, useEffect } from 'react';
+import { Link } from 'react-scroll';
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+
+  const navItems = [
+    { label: 'Home', to: 'home' },
+    { label: 'About', to: 'about' },
+    { label: 'Capabilities', to: 'capabilities' },
+    { label: 'Solutions', to: 'solutions' },
+    { label: 'Research', to: 'research' },
+    { label: 'Contact', to: 'contact' },
+  ]
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isMenuOpen) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [isMenuOpen])
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isMenuOpen])
+
+  return (
+    <>
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-[#0B1C2D] backdrop-blur-md border-b border-[#6E7A86]/20'
+            : 'bg-[#0B1C2D]/95'
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16 md:h-20">
+            {/* Logo */}
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-[#0B1C2D] to-[#6E7A86] rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">L</span>
+              </div>
+              <span className="font-michroma text-xl md:text-2xl font-bold text-white">
+                LOGO
+              </span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-10">
+              <ul className="flex space-x-8">
+                {navItems.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      to={item.to}
+                      spy={true}
+                      smooth={true}
+                      offset={-80} // Adjust for header height
+                      duration={500}
+                      className="font-medium text-gray-300 hover:text-white transition-colors duration-200 relative group cursor-pointer"
+                      activeClass="text-white"
+                    >
+                      {item.label}
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] group-hover:w-full transition-all duration-300" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <button className="font-michroma bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] text-white px-6 py-2.5 rounded-full font-medium hover:shadow-lg hover:shadow-[#6E7A86]/25 transition-all duration-300 hover:-translate-y-0.5">
+                Book a call
+              </button>
+            </nav>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              className="md:hidden flex flex-col space-y-1.5 z-50"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <span
+                className={`w-6 h-0.5 bg-white transition-all duration-300 ${
+                  isMenuOpen ? 'rotate-45 translate-y-2' : ''
+                }`}
+              />
+              <span
+                className={`w-6 h-0.5 bg-white transition-all duration-300 ${
+                  isMenuOpen ? 'opacity-0' : 'opacity-100'
+                }`}
+              />
+              <span
+                className={`w-6 h-0.5 bg-white transition-all duration-300 ${
+                  isMenuOpen ? '-rotate-45 -translate-y-2' : ''
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Full-Screen Menu */}
+      <div
+        className={`md:hidden fixed inset-0 z-40 bg-[#0B1C2D] transition-all duration-500 ease-in-out ${
+          isMenuOpen
+            ? 'opacity-100 visible'
+            : 'opacity-0 invisible delay-300'
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center h-full px-6">
+          {/* Mobile Navigation Items */}
+          <nav className="w-full max-w-sm">
+            <ul className="space-y-8 text-center">
+              {navItems.map((item, index) => (
+                <li
+                  key={item.label}
+                  className={`transition-all duration-300 ${
+                    isMenuOpen
+                      ? 'opacity-100 translate-y-0'
+                      : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{
+                    transitionDelay: isMenuOpen ? `${index * 100 + 100}ms` : '0ms',
+                  }}
+                >
+                  <Link
+                    to={item.to}
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                    duration={500}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="font-michroma text-3xl md:text-4xl font-medium text-white hover:text-[#6E7A86] transition-colors duration-300 block py-2 cursor-pointer"
+                    activeClass="text-[#6E7A86]"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Mobile CTA Button */}
+          <div
+            className={`mt-12 transition-all duration-300 ${
+              isMenuOpen
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
+            }`}
+            style={{
+              transitionDelay: isMenuOpen ? '600ms' : '0ms',
+            }}
+          >
+            <button className="font-michroma bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] text-white px-10 py-4 rounded-full text-lg font-medium hover:shadow-xl hover:shadow-[#6E7A86]/30 transition-all duration-300 hover:scale-105">
+              Book a call
+            </button>
+          </div>
+
+          {/* Close Hint */}
+          <div
+            className={`mt-12 text-[#CBD5E0] text-sm transition-all duration-300 ${
+              isMenuOpen ? 'opacity-100 delay-700' : 'opacity-0'
+            }`}
+          >
+            Tap anywhere to close
+          </div>
+        </div>
+      </div>
+
+      {/* Overlay for closing menu */}
+      {isMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-30"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+    </>
+  )
+}
+
+export default Header
