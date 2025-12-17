@@ -1,3 +1,6 @@
+"use client"
+import Link from "next/link"
+
 const About = () => {
   const stats = [
     {
@@ -124,6 +127,17 @@ const About = () => {
               </div>
             ))}
           </div>
+          <div className="mt-12 text-center">
+  <Link 
+    href="/founder" 
+    className="inline-flex items-center gap-2 text-white bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] px-8 py-3.5 rounded-full font-medium hover:shadow-lg hover:shadow-[#6E7A86]/25 transition-all duration-300 hover:-translate-y-1"
+  >
+    Meet the Founder
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+    </svg>
+  </Link>
+</div>
 
           {/* Additional Info */}
           <div className="mt-16 text-center">

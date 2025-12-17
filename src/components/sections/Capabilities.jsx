@@ -1,3 +1,7 @@
+'use client'
+
+import Link from 'next/link'
+
 const Capabilities = () => {
   const capabilities = [
     {
@@ -9,7 +13,8 @@ const Capabilities = () => {
         </svg>
       ),
       color: 'from-blue-500 to-cyan-400',
-      bgColor: 'bg-blue-500/10'
+      bgColor: 'bg-blue-500/10',
+      link: '/capabilities-details#ai-threat'
     },
     {
       title: 'Unmanned Aerial Systems (ISR Drones)',
@@ -20,7 +25,8 @@ const Capabilities = () => {
         </svg>
       ),
       color: 'from-emerald-500 to-teal-400',
-      bgColor: 'bg-emerald-500/10'
+      bgColor: 'bg-emerald-500/10',
+      link: '/capabilities-details#uas'
     },
     {
       title: 'Threat & IED Detection Technologies',
@@ -31,7 +37,8 @@ const Capabilities = () => {
         </svg>
       ),
       color: 'from-amber-500 to-yellow-400',
-      bgColor: 'bg-amber-500/10'
+      bgColor: 'bg-amber-500/10',
+      link: '/capabilities-details#ied-detection'
     },
     {
       title: 'Border & Perimeter Surveillance Systems',
@@ -42,7 +49,8 @@ const Capabilities = () => {
         </svg>
       ),
       color: 'from-purple-500 to-violet-400',
-      bgColor: 'bg-purple-500/10'
+      bgColor: 'bg-purple-500/10',
+      link: '/capabilities-details#border-security'
     },
     {
       title: 'Advanced Security Databases & Intelligence Platforms',
@@ -53,7 +61,8 @@ const Capabilities = () => {
         </svg>
       ),
       color: 'from-indigo-500 to-blue-400',
-      bgColor: 'bg-indigo-500/10'
+      bgColor: 'bg-indigo-500/10',
+      link: '/capabilities-details#intelligence-databases'
     },
     {
       title: 'Defence Research & Prototyping',
@@ -64,7 +73,8 @@ const Capabilities = () => {
         </svg>
       ),
       color: 'from-rose-500 to-pink-400',
-      bgColor: 'bg-rose-500/10'
+      bgColor: 'bg-rose-500/10',
+      link: '/capabilities-details#engineering-research'
     },
   ]
 
@@ -104,9 +114,10 @@ const Capabilities = () => {
           {/* Capabilities Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {capabilities.map((capability, index) => (
-              <div
+              <Link
                 key={index}
-                className="group relative bg-white border border-gray-200 rounded-2xl p-8 hover:border-gray-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                href={capability.link}
+                className="group relative bg-white border border-gray-200 rounded-2xl p-8 hover:border-gray-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 block"
               >
                 {/* Icon Container */}
                 <div className="mb-6">
@@ -140,9 +151,22 @@ const Capabilities = () => {
                 </div>
 
                 {/* Hover Border Effect */}
-                <div className={`absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r ${capability.color} transition-all duration-300 pointer-events-none`}></div>
-              </div>
+                <div className={`absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-2 group-hover:border-gradient-to-r ${capability.color} transition-all duration-300 pointer-events-none`}></div>
+              </Link>
             ))}
+          </div>
+
+          {/* View All Capabilities Button */}
+          <div className="mt-16 text-center">
+            <Link 
+              href="/capabilities-details"
+              className="inline-flex items-center gap-2 text-[#0B1C2D] border-2 border-[#0B1C2D] px-8 py-3.5 rounded-full font-medium hover:bg-[#0B1C2D] hover:text-white transition-all duration-300"
+            >
+              <span>View All</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
           </div>
 
           {/* Stats Bar */}

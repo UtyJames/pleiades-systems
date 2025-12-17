@@ -1,3 +1,7 @@
+"use client"
+import Link from "next/link";
+import Image from "next/image";
+
 const Footer = () => {
   const quickLinks = [
     { label: 'Home', href: '#home' },
@@ -25,14 +29,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#0B1C2D] to-[#6E7A86] rounded-lg flex items-center justify-center">
-                <span className="font-michroma text-white font-bold text-lg">PS</span>
-              </div>
-              <span className="font-michroma text-2xl font-bold text-white">
-                Pleiades Systems
-              </span>
-            </div>
+             <Link href="/" className="flex items-center space-x-2 group">
+                        <div className="relative w-10 h-10 md:w-[120px] md:h-[100px]">
+                          <Image
+                            src="/logo2.png"
+                            alt="Pleiades Systems Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                          />
+                        </div>
+                      </Link>
             <p className="text-[#CBD5E0] text-sm leading-relaxed mb-6">
               Engineering advanced defence technologies for national security and resilience.
             </p>

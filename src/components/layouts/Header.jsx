@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
+import Image from 'next/image';
+import { Link as NextLink } from 'next/link';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -60,14 +62,17 @@ const Header = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#0B1C2D] to-[#6E7A86] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">L</span>
+             <Link href="/" className="flex items-center space-x-2 group">
+              <div className="relative w-10 h-10 md:w-[120px] md:h-[210px]">
+                <Image
+                  src="/logo.png"
+                  alt="Pleiades Systems Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
-              <span className="font-michroma text-xl md:text-2xl font-bold text-white">
-                LOGO
-              </span>
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-10">
