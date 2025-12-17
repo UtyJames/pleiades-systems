@@ -63,7 +63,7 @@ const Header = () => {
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
              <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative w-10 h-10 md:w-[120px] md:h-[210px]">
+              <div className="relative w-[120px] h-[210px]">
                 <Image
                   src="/logo.png"
                   alt="Pleiades Systems Logo"

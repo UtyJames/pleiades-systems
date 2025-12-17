@@ -30,7 +30,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
              <Link href="/" className="flex items-center space-x-2 group">
-                        <div className="relative w-10 h-10 md:w-[120px] md:h-[100px]">
+                        <div className="relative w-[120px] h-[210px]">
                           <Image
                             src="/logo2.png"
                             alt="Pleiades Systems Logo"
