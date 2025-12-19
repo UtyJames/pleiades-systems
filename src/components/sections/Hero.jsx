@@ -74,10 +74,10 @@ const Hero = () => {
           <div className="mb-8">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="block text-white font-michroma">
-                Engineering Advanced Systems for
+               Clarity for Complex Systems,
               </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-[#CBD5E0] to-[#6E7A86] font-michroma mt-2">
-                National Defence & Security
+                Intelligence for Critical Decisions.
               </span>
             </h1>
           </div>
@@ -85,9 +85,7 @@ const Hero = () => {
           {/* Description */}
           <div className="max-w-3xl mb-12">
             <p className="text-lg md:text-xl text-[#CBD5E0] leading-relaxed">
-              Pleiades Systems develops cutting-edge defence technologies integrating AI, 
-              unmanned platforms, threat detection, and intelligence databases to enhance 
-              national resilience and security.
+              Pleiades Systems builds advanced platforms that help governments and enterprises integrate data, apply artificial intelligence, and operate complex systems with confidence, speed, and precision.
             </p>
           </div>
 
