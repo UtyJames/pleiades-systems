@@ -1,54 +1,73 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
 import Image from 'next/image';
-import { Link as NextLink } from 'next/link';
+import { ChevronDown } from 'lucide-react';
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isIndustriesOpen, setIsIndustriesOpen] = useState(false);
+  const [isMobileIndustriesOpen, setIsMobileIndustriesOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const navItems = [
-    { label: 'Home', to: 'home' },
     { label: 'About', to: 'about' },
+    { label: 'Industries', to: 'industries', hasDropdown: true },
     { label: 'Capabilities', to: 'capabilities' },
     { label: 'Solutions', to: 'solutions' },
     { label: 'Research', to: 'research' },
     { label: 'Contact', to: 'contact' },
-  ]
+  ];
+
+  const industries = [
+    { name: 'Automobile Industry', href: '/industries/automobile' },
+    { name: 'Financial Sector', href: '/industries/financial' },
+    { name: 'Defense', href: '/industries/defense' },
+    { name: 'Energy Industries', href: '/industries/energy' },
+    { name: 'Health Sector', href: '/industries/health' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
+      setScrolled(window.scrollY > 20);
+    };
 
     const handleResize = () => {
       if (window.innerWidth > 768 && isMenuOpen) {
-        setIsMenuOpen(false)
+        setIsMenuOpen(false);
       }
-    }
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('resize', handleResize)
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsIndustriesOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [isMenuOpen])
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto'
+      document.body.style.overflow = 'auto';
     }
 
     return () => {
-      document.body.style.overflow = 'auto'
-    }
-  }, [isMenuOpen])
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -62,8 +81,8 @@ const Header = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
-             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative w-[120px] h-[210px]">
+            <a href="/" className="flex items-center space-x-2 group">
+              <div className="relative w-[120px] h-[50px]">
                 <Image
                   src="/logo.png"
                   alt="Pleiades Systems Logo"
@@ -72,29 +91,70 @@ const Header = () => {
                   priority
                 />
               </div>
-            </Link>
+            </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-10">
-              <ul className="flex space-x-8">
+            <nav className="hidden md:flex items-center space-x-6 lg:space-x-10">
+              <ul className="flex space-x-6 lg:space-x-8">
                 {navItems.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      to={item.to}
-                      spy={true}
-                      smooth={true}
-                      offset={-80} // Adjust for header height
-                      duration={500}
-                      className="font-medium text-gray-300 hover:text-white transition-colors duration-200 relative group cursor-pointer"
-                      activeClass="text-white"
-                    >
-                      {item.label}
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] group-hover:w-full transition-all duration-300" />
-                    </Link>
+                  <li key={item.label} className="relative" ref={item.hasDropdown ? dropdownRef : null}>
+                    {item.hasDropdown ? (
+                      <div
+                        className="relative"
+                        onMouseEnter={() => setIsIndustriesOpen(true)}
+                        onMouseLeave={() => setIsIndustriesOpen(false)}
+                      >
+                        <a
+                          className="font-medium text-gray-300 hover:text-white transition-colors duration-200 relative group cursor-pointer flex items-center gap-1"
+                        >
+                          {item.label}
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-300 ${
+                              isIndustriesOpen ? 'rotate-180' : ''
+                            }`}
+                          />
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] group-hover:w-full transition-all duration-300" />
+                        </a>
+
+                        {/* Dropdown Menu */}
+                        <div
+                          className={`absolute top-full left-0 mt-2 w-64 bg-[#0B1C2D] border border-[#6E7A86]/30 rounded-lg shadow-xl overflow-hidden transition-all duration-300 ${
+                            isIndustriesOpen
+                              ? 'opacity-100 visible translate-y-0'
+                              : 'opacity-0 invisible -translate-y-2'
+                          }`}
+                        >
+                          <div className="py-2">
+                            {industries.map((industry, index) => (
+                              <a
+                                key={index}
+                                href={industry.href}
+                                className="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-[#6E7A86]/20 transition-all duration-200 border-l-2 border-transparent hover:border-[#6E7A86]"
+                              >
+                                {industry.name}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        to={item.to}
+                        spy={true}
+                        smooth={true}
+                        offset={-80}
+                        duration={500}
+                        className="font-medium text-gray-300 hover:text-white transition-colors duration-200 relative group cursor-pointer"
+                        activeClass="text-white"
+                      >
+                        {item.label}
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] group-hover:w-full transition-all duration-300" />
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
-              <button className="font-michroma bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] text-white px-6 py-2.5 rounded-full font-medium hover:shadow-lg hover:shadow-[#6E7A86]/25 transition-all duration-300 hover:-translate-y-0.5">
+              <button className="bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] text-white px-4 lg:px-6 py-2.5 rounded-full font-medium text-sm hover:shadow-lg hover:shadow-[#6E7A86]/25 transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap">
                 Book a call
               </button>
             </nav>
@@ -128,15 +188,13 @@ const Header = () => {
       {/* Mobile Full-Screen Menu */}
       <div
         className={`md:hidden fixed inset-0 z-40 bg-[#0B1C2D] transition-all duration-500 ease-in-out ${
-          isMenuOpen
-            ? 'opacity-100 visible'
-            : 'opacity-0 invisible delay-300'
+          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible delay-300'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full px-6">
+        <div className="flex flex-col items-center justify-center h-full px-6 py-20 overflow-y-auto">
           {/* Mobile Navigation Items */}
           <nav className="w-full max-w-sm">
-            <ul className="space-y-8 text-center">
+            <ul className="space-y-4 text-center">
               {navItems.map((item, index) => (
                 <li
                   key={item.label}
@@ -149,18 +207,54 @@ const Header = () => {
                     transitionDelay: isMenuOpen ? `${index * 100 + 100}ms` : '0ms',
                   }}
                 >
-                  <Link
-                    to={item.to}
-                    spy={true}
-                    smooth={true}
-                    offset={-80}
-                    duration={500}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="font-michroma text-3xl md:text-4xl font-medium text-white hover:text-[#6E7A86] transition-colors duration-300 block py-2 cursor-pointer"
-                    activeClass="text-[#6E7A86]"
-                  >
-                    {item.label}
-                  </Link>
+                  {item.hasDropdown ? (
+                    <div>
+                      <a
+                        onClick={() => setIsMobileIndustriesOpen(!isMobileIndustriesOpen)}
+                        className="text-2xl sm:text-3xl font-medium text-white hover:text-[#6E7A86] transition-colors duration-300 py-2 cursor-pointer flex items-center justify-center gap-2 mx-auto w-full"
+                      >
+                        {item.label}
+                        <ChevronDown
+                          className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 ${
+                            isMobileIndustriesOpen ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </a>
+                      
+                      {/* Mobile Dropdown */}
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ${
+                          isMobileIndustriesOpen ? 'max-h-96 mt-3' : 'max-h-0'
+                        }`}
+                      >
+                        <div className="space-y-2 bg-[#0B1C2D]/50 rounded-lg py-2 px-4 border border-[#6E7A86]/20">
+                          {industries.map((industry, idx) => (
+                            <a
+                              key={idx}
+                              href={industry.href}
+                              className="block text-base sm:text-lg text-gray-300 hover:text-white transition-colors duration-200 py-2.5 border-l-2 border-transparent hover:border-[#6E7A86] pl-3"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {industry.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      to={item.to}
+                      spy={true}
+                      smooth={true}
+                      offset={-80}
+                      duration={500}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-2xl sm:text-3xl font-medium text-white hover:text-[#6E7A86] transition-colors duration-300 block py-2 cursor-pointer"
+                      activeClass="text-[#6E7A86]"
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -168,28 +262,26 @@ const Header = () => {
 
           {/* Mobile CTA Button */}
           <div
-            className={`mt-12 transition-all duration-300 ${
-              isMenuOpen
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-8'
+            className={`mt-10 transition-all duration-300 ${
+              isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
             style={{
               transitionDelay: isMenuOpen ? '600ms' : '0ms',
             }}
           >
-            <button className="font-michroma bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] text-white px-10 py-4 rounded-full text-lg font-medium hover:shadow-xl hover:shadow-[#6E7A86]/30 transition-all duration-300 hover:scale-105">
+            <button className="bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-medium hover:shadow-xl hover:shadow-[#6E7A86]/30 transition-all duration-300 hover:scale-105">
               Book a call
             </button>
           </div>
 
           {/* Close Hint */}
-          <div
-            className={`mt-12 text-[#CBD5E0] text-sm transition-all duration-300 ${
+          {/* <div
+            className={`mt-8 text-[#CBD5E0] text-xs sm:text-sm transition-all duration-300 ${
               isMenuOpen ? 'opacity-100 delay-700' : 'opacity-0'
             }`}
           >
             Tap anywhere to close
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -201,7 +293,7 @@ const Header = () => {
         />
       )}
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
