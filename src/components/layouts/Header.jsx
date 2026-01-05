@@ -1,32 +1,30 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-scroll';
+import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isIndustriesOpen, setIsIndustriesOpen] = useState(false);
-  const [isMobileIndustriesOpen, setIsMobileIndustriesOpen] = useState(false);
+  const [isDefenceOpen, setIsDefenceOpen] = useState(false);
+  const [isMobileDefenceOpen, setIsMobileDefenceOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const navItems = [
-    { label: 'About', to: 'about' },
-    { label: 'Industries', to: 'industries', hasDropdown: true },
-    { label: 'Capabilities', to: 'capabilities' },
-    { label: 'Solutions', to: 'solutions' },
-    { label: 'Research', to: 'research' },
-    { label: 'Contact', to: 'contact' },
+    { label: 'Home', href: '/' },
+    { label: 'Automation', href: '/automation' },
+    { label: 'Intelligence', href: '/intelligence' },
+    { label: 'Defence', href: '/defence', hasDropdown: true },
+    { label: 'Governance', href: '/governance' },
+    { label: 'About Pleiades', href: '/about' },
+    { label: 'Contact', href: '/contact' },
   ];
 
-  const industries = [
-    { name: 'Automobile Industry', href: '/industries/automobile' },
-    { name: 'Financial Sector', href: '/industries/financial' },
-    { name: 'Defense', href: '/industries/defense' },
-    { name: 'Energy Industries', href: '/industries/energy' },
-    { name: 'Health Sector', href: '/industries/health' },
+  const defenceItems = [
+    { name: 'SAMSON Platform', href: '/defence/samson-platform' },
+    { name: 'Defense Innovation', href: '/defence/defense-innovation' },
   ];
 
   useEffect(() => {
@@ -42,7 +40,7 @@ const Header = () => {
 
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsIndustriesOpen(false);
+        setIsDefenceOpen(false);
       }
     };
 
@@ -101,8 +99,8 @@ const Header = () => {
                     {item.hasDropdown ? (
                       <div
                         className="relative"
-                        onMouseEnter={() => setIsIndustriesOpen(true)}
-                        onMouseLeave={() => setIsIndustriesOpen(false)}
+                        onMouseEnter={() => setIsDefenceOpen(true)}
+                        onMouseLeave={() => setIsDefenceOpen(false)}
                       >
                         <a
                           className="font-medium text-gray-300 hover:text-white transition-colors duration-200 relative group cursor-pointer flex items-center gap-1"
@@ -110,7 +108,7 @@ const Header = () => {
                           {item.label}
                           <ChevronDown
                             className={`w-4 h-4 transition-transform duration-300 ${
-                              isIndustriesOpen ? 'rotate-180' : ''
+                              isDefenceOpen ? 'rotate-180' : ''
                             }`}
                           />
                           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] group-hover:w-full transition-all duration-300" />
@@ -119,33 +117,28 @@ const Header = () => {
                         {/* Dropdown Menu */}
                         <div
                           className={`absolute top-full left-0 mt-2 w-64 bg-[#0B1C2D] border border-[#6E7A86]/30 rounded-lg shadow-xl overflow-hidden transition-all duration-300 ${
-                            isIndustriesOpen
+                            isDefenceOpen
                               ? 'opacity-100 visible translate-y-0'
                               : 'opacity-0 invisible -translate-y-2'
                           }`}
                         >
                           <div className="py-2">
-                            {industries.map((industry, index) => (
-                              <a
+                            {defenceItems.map((item, index) => (
+                              <Link
                                 key={index}
-                                href={industry.href}
+                                href={item.href}
                                 className="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-[#6E7A86]/20 transition-all duration-200 border-l-2 border-transparent hover:border-[#6E7A86]"
                               >
-                                {industry.name}
-                              </a>
+                                {item.name}
+                              </Link>
                             ))}
                           </div>
                         </div>
                       </div>
                     ) : (
                       <Link
-                        to={item.to}
-                        spy={true}
-                        smooth={true}
-                        offset={-80}
-                        duration={500}
+                        href={item.href}
                         className="font-medium text-gray-300 hover:text-white transition-colors duration-200 relative group cursor-pointer"
-                        activeClass="text-white"
                       >
                         {item.label}
                         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] group-hover:w-full transition-all duration-300" />
@@ -210,13 +203,13 @@ const Header = () => {
                   {item.hasDropdown ? (
                     <div>
                       <a
-                        onClick={() => setIsMobileIndustriesOpen(!isMobileIndustriesOpen)}
+                        onClick={() => setIsMobileDefenceOpen(!isMobileDefenceOpen)}
                         className="text-2xl sm:text-3xl font-medium text-white hover:text-[#6E7A86] transition-colors duration-300 py-2 cursor-pointer flex items-center justify-center gap-2 mx-auto w-full"
                       >
                         {item.label}
                         <ChevronDown
                           className={`w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 ${
-                            isMobileIndustriesOpen ? 'rotate-180' : ''
+                            isMobileDefenceOpen ? 'rotate-180' : ''
                           }`}
                         />
                       </a>
@@ -224,33 +217,28 @@ const Header = () => {
                       {/* Mobile Dropdown */}
                       <div
                         className={`overflow-hidden transition-all duration-300 ${
-                          isMobileIndustriesOpen ? 'max-h-96 mt-3' : 'max-h-0'
+                          isMobileDefenceOpen ? 'max-h-96 mt-3' : 'max-h-0'
                         }`}
                       >
                         <div className="space-y-2 bg-[#0B1C2D]/50 rounded-lg py-2 px-4 border border-[#6E7A86]/20">
-                          {industries.map((industry, idx) => (
-                            <a
+                          {defenceItems.map((item, idx) => (
+                            <Link
                               key={idx}
-                              href={industry.href}
+                              href={item.href}
                               className="block text-base sm:text-lg text-gray-300 hover:text-white transition-colors duration-200 py-2.5 border-l-2 border-transparent hover:border-[#6E7A86] pl-3"
                               onClick={() => setIsMenuOpen(false)}
                             >
-                              {industry.name}
-                            </a>
+                              {item.name}
+                            </Link>
                           ))}
                         </div>
                       </div>
                     </div>
                   ) : (
                     <Link
-                      to={item.to}
-                      spy={true}
-                      smooth={true}
-                      offset={-80}
-                      duration={500}
+                      href={item.href}
                       onClick={() => setIsMenuOpen(false)}
                       className="text-2xl sm:text-3xl font-medium text-white hover:text-[#6E7A86] transition-colors duration-300 block py-2 cursor-pointer"
-                      activeClass="text-[#6E7A86]"
                     >
                       {item.label}
                     </Link>
