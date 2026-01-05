@@ -22,8 +22,8 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="relative bg-[#0B1C2D] border-t border-white/10">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0B1C2D]/50"></div>
+    <footer className="relative bg-[var(--color-navy)] border-t border-white/10">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--color-navy)]/50"></div>
       
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -89,7 +89,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index} className="flex items-center">
-                  <div className="w-1.5 h-1.5 bg-[#6E7A86] rounded-full mr-3"></div>
+                  <div className="w-1.5 h-1.5 bg-[var(--color-steel)] rounded-full mr-3"></div>
                   <span className="text-[#CBD5E0] text-sm">{service}</span>
                 </li>
               ))}
@@ -103,7 +103,7 @@ const Footer = () => {
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <svg className="w-5 h-5 text-[#6E7A86] mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[var(--color-steel)] mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 <div>
@@ -114,7 +114,7 @@ const Footer = () => {
                 </div>
               </li>
               <li className="flex items-start">
-                <svg className="w-5 h-5 text-[#6E7A86] mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[var(--color-steel)] mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
@@ -127,7 +127,7 @@ const Footer = () => {
                 </div>
               </li>
               <li className="flex items-start">
-                <svg className="w-5 h-5 text-[#6E7A86] mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-[var(--color-steel)] mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
@@ -152,21 +152,21 @@ const Footer = () => {
               <a href="#" className="text-[#CBD5E0] hover:text-white text-sm transition-colors duration-200">
                 Privacy Policy
               </a>
-              <span className="text-[#6E7A86]">•</span>
+              <span className="text-[var(--color-steel)]">•</span>
               <a href="#" className="text-[#CBD5E0] hover:text-white text-sm transition-colors duration-200">
                 Terms of Service
               </a>
-              <span className="text-[#6E7A86]">•</span>
+              <span className="text-[var(--color-steel)]">•</span>
               <a href="#" className="text-[#CBD5E0] hover:text-white text-sm transition-colors duration-200">
                 Security Policy
               </a>
-              <span className="text-[#6E7A86]">•</span>
+              <span className="text-[var(--color-steel)]">•</span>
               <a href="#" className="text-[#CBD5E0] hover:text-white text-sm transition-colors duration-200">
                 Compliance
               </a>
             </div>
           </div>
-          <div className="mt-4 text-center text-[#6E7A86] text-xs">
+          <div className="mt-4 text-center text-[var(--color-steel)] text-xs">
             This website and all communications are secured with military-grade encryption.
           </div>
         </div>

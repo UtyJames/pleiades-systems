@@ -1,4 +1,4 @@
-import { Michroma, Work_Sans } from "next/font/google";
+import { Michroma, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 
 const michroma = Michroma({
@@ -7,8 +7,8 @@ const michroma = Michroma({
   weight: "400", 
 });
 
-const workSans = Work_Sans({
-  variable: "--font-work-sans",
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -63,7 +63,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${michroma.variable} ${workSans.variable}`}>
+    <html lang="en" className={`${michroma.variable} ${ibmPlexSans.variable}`}>
       <body className="antialiased">
         {children}
       </body>

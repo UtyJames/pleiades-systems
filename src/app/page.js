@@ -45,12 +45,12 @@ export default function Home() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#0B1C2D]">
+    <div className="min-h-screen bg-[var(--color-navy)]">
       <Header />
 
       <main>
         {/* --- HERO SECTION --- */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0B1C2D] text-white pt-20">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--color-navy)] text-white pt-20">
           {/* Background */}
           <div className="absolute inset-0 z-0">
              {/* Tech Pattern Overlay */}
@@ -68,18 +68,18 @@ export default function Home() {
               placeholder="blur"
             />
             {/* Gradients for depth */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1C2D] via-transparent to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1C2D]/90 via-[#0B1C2D]/50 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy)] via-transparent to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-navy)]/90 via-[var(--color-navy)]/50 to-transparent"></div>
           </div>
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
             <div className="max-w-4xl">
-              <span className="inline-block px-4 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-full text-blue-200 text-sm font-medium mb-6 backdrop-blur-sm">
+              <span className="inline-block px-4 py-1.5 bg-white/5 border border-white/20 rounded-full text-gray-300 text-sm font-medium mb-6 backdrop-blur-sm">
                 Indigenous Technology Company
               </span>
               <h1 className="font-michroma text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight">
                 Advanced Automation, <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[var(--color-steel)]">
                   Intelligence & Strategic Systems
                 </span>
               </h1>
@@ -89,14 +89,14 @@ export default function Home() {
                 institutional, and government domains.
               </p>
               
-              <p className="text-lg text-gray-400 italic mb-12 max-w-2xl border-l-2 border-blue-500/50 pl-6">
+              <p className="text-lg text-[var(--color-steel)] italic mb-12 max-w-2xl border-l-2 border-[var(--color-steel)] pl-6">
                 We design systems that transform data into awareness, signals into understanding, and
                 information into coordinated action — always under lawful authority and governance.
               </p>
 
               <div className="flex flex-wrap gap-4">
                  <Link href="/contact">
-                  <button className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-4 rounded-full font-bold hover:shadow-lg hover:shadow-blue-500/25 transition-all hover:-translate-y-1 flex items-center gap-2">
+                  <button className="bg-white text-[var(--color-navy)] px-8 py-4 rounded-full font-bold hover:shadow-lg hover:shadow-white/10 transition-all hover:-translate-y-1 flex items-center gap-2">
                     Start a Conversation
                     <ArrowRight className="w-5 h-5" />
                   </button>
@@ -116,25 +116,25 @@ export default function Home() {
              <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                    <div>
-                      <div className="flex items-center gap-2 text-blue-600 font-bold mb-4">
+                      <div className="flex items-center gap-2 text-[var(--color-steel)] font-bold mb-4">
                          <Target className="w-5 h-5" />
                          <span className="tracking-wider uppercase text-sm">About Us</span>
                       </div>
-                      <h2 className="font-michroma text-3xl md:text-4xl font-bold text-[#0B1C2D] mb-6">
+                      <h2 className="font-michroma text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-6">
                          Clarity, Foresight, and Control
                       </h2>
-                      <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                      <p className="text-lg text-[var(--color-steel)] mb-6 leading-relaxed">
                          Pleiades Systems exists to help institutions operate with clarity, foresight, and control in
                          complex environments. We are engineers, system architects, and intelligence technologists 
                          building the next layer of national capability.
                       </p>
-                      <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                      <p className="text-lg text-[var(--color-steel)] mb-8 leading-relaxed">
                          Our work is defined by systems engineering discipline and strategic foresight. We prioritize
                          interoperability, resilience, and scalability to ensure relevance in both current and future 
                          landscapes.
                       </p>
                       <Link href="/about">
-                         <button className="text-[#0B1C2D] font-bold border-b-2 border-[#0B1C2D] pb-1 hover:text-blue-600 hover:border-blue-600 transition-colors flex items-center gap-2">
+                         <button className="text-[var(--color-navy)] font-bold border-b-2 border-[var(--color-navy)] pb-1 hover:text-[var(--color-steel)] hover:border-[var(--color-steel)] transition-colors flex items-center gap-2">
                             Read Our Story <ArrowRight className="w-4 h-4" />
                          </button>
                       </Link>
@@ -142,19 +142,19 @@ export default function Home() {
                    {/* About Visual/Grid */}
                    <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-4 mt-8">
-                         <div className="bg-blue-50 p-6 rounded-2xl">
-                            <Users className="w-8 h-8 text-blue-600 mb-2" />
-                            <div className="font-bold text-[#0B1C2D]">Expert Team</div>
+                         <div className="bg-[var(--color-off-white)] p-6 rounded-2xl border border-[var(--color-steel)]/20">
+                            <Users className="w-8 h-8 text-[var(--color-navy)] mb-2" />
+                            <div className="font-bold text-[var(--color-navy)]">Expert Team</div>
                          </div>
-                         <div className="bg-gray-100 p-6 rounded-2xl">
-                             <Globe className="w-8 h-8 text-gray-600 mb-2" />
-                            <div className="font-bold text-[#0B1C2D]">National Scale</div>
+                         <div className="bg-[var(--color-navy)] p-6 rounded-2xl">
+                             <Globe className="w-8 h-8 text-white mb-2" />
+                            <div className="font-bold text-white">National Scale</div>
                          </div>
                       </div>
                       <div className="space-y-4">
-                         <div className="bg-emerald-50 p-6 rounded-2xl">
-                            <Zap className="w-8 h-8 text-emerald-600 mb-2" />
-                            <div className="font-bold text-[#0B1C2D]">Rapid Action</div>
+                         <div className="bg-[var(--color-steel)]/10 p-6 rounded-2xl border border-[var(--color-steel)]/20">
+                            <Zap className="w-8 h-8 text-[var(--color-steel)] mb-2" />
+                            <div className="font-bold text-[var(--color-navy)]">Rapid Action</div>
                          </div>
                          <div className="bg-gray-900 p-6 rounded-2xl">
                             <Shield className="w-8 h-8 text-white mb-2" />
@@ -167,14 +167,14 @@ export default function Home() {
         </section>
 
         {/* --- WHAT WE DO STRIP (Restored Dark/Card Aesthetic) --- */}
-        <section className="bg-[#0B1C2D] py-20 relative overflow-hidden">
+        <section className="bg-[var(--color-navy)] py-20 relative overflow-hidden">
             {/* Subtle pattern background */}
              <div className="absolute inset-0 opacity-5" style={{ backgroundImage: `url("${svgPattern}")` }}></div>
              
              <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-16">
                    <h2 className="font-michroma text-3xl md:text-4xl font-bold text-white mb-4">What We Do</h2>
-                   <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto"></div>
+                   <div className="w-24 h-1 bg-gradient-to-r from-white/50 to-[var(--color-steel)] mx-auto"></div>
                 </div>
 
                 <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -182,8 +182,8 @@ export default function Home() {
                       const Icon = item.icon
                       return (
                         <div key={idx} className="group bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-2xl hover:bg-white/10 hover:-translate-y-2 transition-all duration-300">
-                           <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                              <Icon className="w-6 h-6 text-blue-300 group-hover:text-emerald-300" />
+                           <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                              <Icon className="w-6 h-6 text-white group-hover:text-[var(--color-steel)]" />
                            </div>
                            <h3 className="font-michroma text-sm font-bold text-white mb-2">{item.title}</h3>
                            <p className="text-sm text-gray-400 leading-relaxed">{item.description}</p>
@@ -197,26 +197,26 @@ export default function Home() {
         {/* --- SECTIONS SNIPPETS --- */}
         
         {/* Automation Snippet */}
-        <section className="py-20 lg:py-28 bg-gray-50 overflow-hidden">
+        <section className="py-20 lg:py-28 bg-[var(--color-off-white)] overflow-hidden">
            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                  <div className="relative h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl group">
                     <Image src={automationImg} alt="Automation" fill className="object-cover transition-transform duration-700 group-hover:scale-105" placeholder="blur"/>
                  </div>
                  <div>
-                    <div className="flex items-center gap-2 text-blue-600 font-bold mb-4">
+                    <div className="flex items-center gap-2 text-[var(--color-steel)] font-bold mb-4">
                        <Cpu className="w-5 h-5" />
                        <span className="tracking-wider uppercase text-sm">Automation</span>
                     </div>
-                    <h2 className="font-michroma text-3xl md:text-4xl font-bold text-[#0B1C2D] mb-6">
+                    <h2 className="font-michroma text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-6">
                        Intelligent Automation Systems
                     </h2>
-                    <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                    <p className="text-lg text-[var(--color-steel)] mb-8 leading-relaxed">
                        We specialize in the design and deployment of advanced automation systems that streamline operations,
                        enhance efficiency, and reduce human error in critical environments.
                     </p>
                     <Link href="/automation">
-                       <button className="text-[#0B1C2D] font-bold border-b-2 border-[#0B1C2D] pb-1 hover:text-blue-600 hover:border-blue-600 transition-colors flex items-center gap-2">
+                       <button className="text-[var(--color-navy)] font-bold border-b-2 border-[var(--color-navy)] pb-1 hover:text-[var(--color-steel)] hover:border-[var(--color-steel)] transition-colors flex items-center gap-2">
                           Learn More <ArrowRight className="w-4 h-4" />
                        </button>
                     </Link>
@@ -226,12 +226,12 @@ export default function Home() {
         </section>
 
         {/* Intelligence Snippet (Dark BG) */}
-        <section className="py-20 lg:py-28 bg-[#0B1C2D] text-white overflow-hidden relative">
+        <section className="py-20 lg:py-28 bg-[var(--color-navy)] text-white overflow-hidden relative">
             <div className="absolute inset-0 opacity-5" style={{ backgroundImage: `url("${svgPattern}")` }}></div>
            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                  <div className="order-2 lg:order-1">
-                    <div className="flex items-center gap-2 text-emerald-400 font-bold mb-4">
+                    <div className="flex items-center gap-2 text-[var(--color-steel)] font-bold mb-4">
                        <Activity className="w-5 h-5" />
                        <span className="tracking-wider uppercase text-sm">Intelligence</span>
                     </div>
@@ -244,14 +244,14 @@ export default function Home() {
                        into structured insight.
                     </p>
                     <Link href="/intelligence">
-                       <button className="text-white font-bold border-b-2 border-white pb-1 hover:text-emerald-400 hover:border-emerald-400 transition-colors flex items-center gap-2">
+                       <button className="text-white font-bold border-b-2 border-white pb-1 hover:text-[var(--color-steel)] hover:border-[var(--color-steel)] transition-colors flex items-center gap-2">
                           Learn More <ArrowRight className="w-4 h-4" />
                        </button>
                     </Link>
                  </div>
                  <div className="order-1 lg:order-2 relative h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
                     <Image src={intelligenceImg} alt="Intelligence" fill className="object-cover transition-transform duration-700 group-hover:scale-105" placeholder="blur"/>
-                    <div className="absolute inset-0 bg-[#0B1C2D]/20"></div>
+                    <div className="absolute inset-0 bg-[var(--color-navy)]/20"></div>
                  </div>
               </div>
            </div>
@@ -265,20 +265,20 @@ export default function Home() {
                     <Image src={defenceImg} alt="Defence" fill className="object-cover transition-transform duration-700 group-hover:scale-105" placeholder="blur"/>
                  </div>
                  <div>
-                    <div className="flex items-center gap-2 text-red-600 font-bold mb-4">
+                    <div className="flex items-center gap-2 text-[var(--color-alert)] font-bold mb-4">
                        <Shield className="w-5 h-5" />
                        <span className="tracking-wider uppercase text-sm">Defence</span>
                     </div>
-                    <h2 className="font-michroma text-3xl md:text-4xl font-bold text-[#0B1C2D] mb-6">
+                    <h2 className="font-michroma text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-6">
                        Software-Defined & Autonomous Warfare
                     </h2>
-                    <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                    <p className="text-lg text-[var(--color-steel)] mb-8 leading-relaxed">
                        Pleiades Systems develops advanced defence systems focused on decision superiority,
                        autonomous operations, and multi-domain dominance. Our flagship SAMSON platform
                        integrates intelligence, automation, and weaponized platforms.
                     </p>
                     <Link href="/defence">
-                       <button className="text-[#0B1C2D] font-bold border-b-2 border-[#0B1C2D] pb-1 hover:text-red-600 hover:border-red-600 transition-colors flex items-center gap-2">
+                       <button className="text-[var(--color-navy)] font-bold border-b-2 border-[var(--color-navy)] pb-1 hover:text-[var(--color-alert)] hover:border-[var(--color-alert)] transition-colors flex items-center gap-2">
                           Learn More <ArrowRight className="w-4 h-4" />
                        </button>
                     </Link>
@@ -288,22 +288,22 @@ export default function Home() {
         </section>
 
         {/* Governance Snippet (Grey BG) */}
-        <section className="py-20 lg:py-28 bg-gray-100">
+        <section className="py-20 lg:py-28 bg-[var(--color-off-white)]">
            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl mx-auto">
               <div className="flex items-center justify-center gap-2 text-gray-500 font-bold mb-4">
                  <Globe className="w-5 h-5" />
                  <span className="tracking-wider uppercase text-sm">Governance</span>
               </div>
-              <h2 className="font-michroma text-3xl md:text-4xl font-bold text-[#0B1C2D] mb-6">
+              <h2 className="font-michroma text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-6">
                  Control & Authorization
               </h2>
-              <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+              <p className="text-lg text-[var(--color-steel)] mb-10 leading-relaxed">
                  Defence systems are developed, deployed, and operated only under authorized government
                  and military frameworks. We ensure human-in-the-loop lethal decision authority and
                  strict adherence to national data sovereignty.
               </p>
               <Link href="/governance">
-                 <button className="bg-[#0B1C2D] text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition-colors shadow-lg">
+                 <button className="bg-[var(--color-navy)] text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition-colors shadow-lg">
                     Read Governance Policy
                  </button>
               </Link>

@@ -1,10 +1,20 @@
 @import "tailwindcss";
 
 @layer base {
-  /* This sets Work Sans as default for all text */
+  :root {
+    --color-navy: #0B1C2D;
+    --color-steel: #6E7A86;
+    --color-off-white: #F4F6F8;
+    --color-alert: #D32F2F;
+    --color-pure-white: #FFFFFF;
+  }
+
+  /* This sets IBM Plex Sans as default for all text */
   body {
-    font-family: var(--font-work-sans);
+    font-family: var(--font-ibm-plex-sans);
     scroll-behavior: smooth;
+    background-color: var(--color-off-white);
+    color: var(--color-navy);
   }
   
   /* Michroma for all headings and buttons */
@@ -18,7 +28,15 @@
     font-family: var(--font-michroma);
   }
   
-  .font-work-sans {
-    font-family: var(--font-work-sans);
+  .font-ibm-plex-sans {
+    font-family: var(--font-ibm-plex-sans);
   }
+  
+  /* Utility classes for colors if needed alongside Tailwind arbitrarily */
+  .text-navy { color: var(--color-navy); }
+  .bg-navy { background-color: var(--color-navy); }
+  .text-steel { color: var(--color-steel); }
+  .bg-steel { background-color: var(--color-steel); }
+  .text-alert { color: var(--color-alert); }
+  .bg-alert { background-color: var(--color-alert); }
 }

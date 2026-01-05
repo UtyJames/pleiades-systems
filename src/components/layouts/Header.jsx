@@ -18,7 +18,7 @@ const Header = () => {
     { label: 'Intelligence', href: '/intelligence' },
     { label: 'Defence', href: '/defence', hasDropdown: true },
     { label: 'Governance', href: '/governance' },
-    { label: 'About Pleiades', href: '/about' },
+    { label: 'About Us', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ];
 
@@ -72,8 +72,8 @@ const Header = () => {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#0B1C2D] backdrop-blur-md border-b border-[#6E7A86]/20'
-            : 'bg-[#0B1C2D]/95'
+            ? 'bg-[var(--color-navy)] backdrop-blur-md border-b border-[var(--color-steel)]/20'
+            : 'bg-[var(--color-navy)]/95'
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -141,13 +141,13 @@ const Header = () => {
                         className="font-medium text-gray-300 hover:text-white transition-colors duration-200 relative group cursor-pointer"
                       >
                         {item.label}
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] group-hover:w-full transition-all duration-300" />
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[var(--color-navy)] to-[var(--color-steel)] group-hover:w-full transition-all duration-300" />
                       </Link>
                     )}
                   </li>
                 ))}
               </ul>
-              <button className="bg-gradient-to-r from-[#0B1C2D] to-[#6E7A86] text-white px-4 lg:px-6 py-2.5 rounded-full font-medium text-sm hover:shadow-lg hover:shadow-[#6E7A86]/25 transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap">
+              <button className="bg-gradient-to-r from-[var(--color-navy)] to-[var(--color-steel)] text-white px-4 lg:px-6 py-2.5 rounded-full font-medium text-sm hover:shadow-lg hover:shadow-[var(--color-steel)]/25 transition-all duration-300 hover:-translate-y-0.5 whitespace-nowrap">
                 Book a call
               </button>
             </nav>
